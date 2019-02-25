@@ -2,7 +2,6 @@ import sys
 from trie import *
 
 trie = Trie()
-#WORD_TARGET = sys.argv[1]
 
 class Levenshtein:
     def __init__(self):
@@ -16,7 +15,7 @@ class Levenshtein:
         for char in trie.children:
             self.levenshteinDistance( trie.children[char], char, word, currRow, results )
 
-        return results
+        return results[0]
 
     def levenshteinDistance(self, node, char, word, prevRow, results):
         cols = len( word ) + 1
@@ -34,7 +33,7 @@ class Levenshtein:
             currRow.append( min( insertCost, deleteCost, replaceCost ) )
 
         if currRow[-1] <= self.max_cost and node.word != None:
-            results.append( ( node.word, currRow[-1] ) )
+            results.append(node.word)
 
         if min( currRow ) <= self.max_cost:
             for letter in node.children:
