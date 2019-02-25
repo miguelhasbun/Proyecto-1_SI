@@ -2,9 +2,9 @@ import sys
 from trie import *
 
 trie = Trie()
-WORD_TARGET = sys.argv[1]
+#WORD_TARGET = sys.argv[1]
 
-class levenshtein:
+class Levenshtein:
     def __init__(self):
         self.max_cost = 1 #El costo es cuantas letras de diferencia hay entre la WORD_TARGET i la word en WORDS
                           #En el constructor se deberia calcular el max_cost
@@ -41,9 +41,3 @@ class levenshtein:
                 self.levenshteinDistance( node.children[letter], letter, word, currRow, results )
 
         return None
-
-for word in WORDS:
-    trie.insert(word)
-
-l = levenshtein()
-print (l.search(WORD_TARGET))
