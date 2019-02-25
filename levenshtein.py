@@ -50,21 +50,3 @@ for word in WORDS:
     trie.insert(word)
 
 l = levenshtein()
-
-if WORD_TARGET=="grep" or WORD_TARGET=="ping" or WORD_TARGET=="ls":
-    resultss=WORD_TARGET
-else:
-    print ("Did you meant to say:",l.search(WORD_TARGET))
-    resultss = l.search(WORD_TARGET)
-
-if len(resultss) == 0:
-    print('You have not written any commands!')
-else:
-    if resultss == "grep":
-        print('grep is a command-line utility for searching plain-text data sets for lines that match a regular expression')
-    elif resultss=="ping":
-        print('The ping is used to test the ability of the source computer to reach a specified destination computer. ')
-    elif resultss == "ls":
-        print('ls is a command to list computer files in Unix and Unix-like operating systems.')
-    else:
-        print('Unrecognised argument.')
