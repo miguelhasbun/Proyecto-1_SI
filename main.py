@@ -6,7 +6,7 @@ WORD_TARGET = sys.argv[1]
 for word in WORDS:
     trie.insert(word)
 
-l = Levenshtein()
+l = levenshtein()
 
 if WORD_TARGET=="grep" or WORD_TARGET=="ping" or WORD_TARGET=="ls":
     result = WORD_TARGET
