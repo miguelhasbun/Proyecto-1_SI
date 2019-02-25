@@ -8,18 +8,18 @@ class Test(unittest.TestCase):
             trie.insert(word)
         l = Levenshtein()
         res = l.search('grup')
-        self.assertEqual(res[0][0], 'grep')
+        self.assertEqual(res, 'grep')
 
     def test_ping(self):
         for word in WORDS:
             trie.insert(word)
         l = Levenshtein()
         res = l.search('pinh')
-        self.assertEqual(res[0][0], 'ping')
+        self.assertEqual(res, 'ping')
 
     def test_ls(self):
         for word in WORDS:
             trie.insert(word)
         l = Levenshtein()
         res = l.search('lss')
-        self.assertEqual(res[0][0], 'ls')
+        self.assertEqual(res, 'ls')
