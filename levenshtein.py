@@ -1,17 +1,13 @@
 import sys
 from trie import *
-import random
+
 trie = Trie()
 WORD_TARGET = sys.argv[1]
 
 class levenshtein:
     def __init__(self):
-        tam =len(word)
-        c=0
-        for x in range(1,tam):
-            if word[x-1]!='g' or word[x-1]!='r' or word[x-1]!='e' or word[x-1]!='p' or word[x-1]!='i' or word[x-1]!='n' or word[x-1]!='l' or word[x-1]!='s':
-                c=c+1
-        self.max_cost = c
+        self.max_cost = 1 #El costo es cuantas letras de diferencia hay entre la WORD_TARGET i la word en WORDS
+                          #En el constructor se deberia calcular el max_cost
 
     def search(self, word):
         currRow = range( len( word ) + 1 )
@@ -20,7 +16,7 @@ class levenshtein:
         for char in trie.children:
             self.levenshteinDistance( trie.children[char], char, word, currRow, results )
 
-        return results[0]
+        return results
 
     def levenshteinDistance(self, node, char, word, prevRow, results):
         cols = len( word ) + 1
@@ -38,7 +34,7 @@ class levenshtein:
             currRow.append( min( insertCost, deleteCost, replaceCost ) )
 
         if currRow[-1] <= self.max_cost and node.word != None:
-            results.append( ( node.word) )
+            results.append( ( node.word, currRow[-1] ) )
 
         if min( currRow ) <= self.max_cost:
             for letter in node.children:
@@ -50,18 +46,4 @@ for word in WORDS:
     trie.insert(word)
 
 l = levenshtein()
-
-print ("Did you meant to say:",l.search(WORD_TARGET))
-
-resultss = l.search(WORD_TARGET)
-if len(resultss) == 0:
-    print('You have not written any commands!')
-else:
-		if resultss == "grep":
-			print('grep is a command-line utility for searching plain-text data sets for lines that match a regular expression')
-		elif resultss == "ping":
-			print('The ping is used to test the ability of the source computer to reach a specified destination computer. ')
-		elif resultss == "ls":
-			print('ls is a command to list computer files in Unix and Unix-like operating systems.')
-		else:
-			print('Unrecognised argument.')
+print (l.search(WORD_TARGET))
