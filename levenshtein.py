@@ -51,12 +51,9 @@ for word in WORDS:
 
 l = levenshtein()
 
-if WORD_TARGET=="grep" or WORD_TARGET=="ping" or WORD_TARGET=="ls":
-    resultss=WORD_TARGET
-else:
-    print ("Did you meant to say:",l.search(WORD_TARGET))
-    resultss = l.search(WORD_TARGET)
+print ("Did you meant to say:",l.search(WORD_TARGET))
 
+resultss = l.search(WORD_TARGET)
 if len(resultss) == 0:
     print('You have not written any commands!')
 else:
